@@ -13,3 +13,7 @@ The following environment variables are required to run the app:
 
 - MESSAGE: The message to display on the inquirer prompt
 - CHOICES: The choices to display on the inquirer prompt (they have to match your database names and csv file names)
+
+## CSV
+
+- Semicolon sepparated files allowed only
