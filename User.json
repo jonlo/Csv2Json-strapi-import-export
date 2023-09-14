@@ -1,0 +1,12 @@
+{
+	"version": 2,
+	"data": {
+		"api::user.user": {
+			"1": {
+				"name": "John",
+				"email": "John-Email",
+				"age": "John-Age"
+			}
+		}
+	}
+}
