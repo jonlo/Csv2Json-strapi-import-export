@@ -45,7 +45,7 @@ inquirer
 
 
 const semicolonToComma = () => {
-	fs.readFile(`./${csvFileName}`, 'utf8', (err, data) => {
+	fs.readFile(`./csv/${csvFileName}`, 'utf8', (err, data) => {
 		if (err) {
 			console.error('Error reading the file:', err);
 			return;
@@ -55,7 +55,7 @@ const semicolonToComma = () => {
 		const replacedData = removeCommasData.replace(/;/g, ','); // Replace semicolons with commas
 
 		// Write back to the file
-		fs.writeFile(`./tmp_${csvFileName}`, replacedData, 'utf8', (err) => {
+		fs.writeFile(`./csv/tmp_${csvFileName}`, replacedData, 'utf8', (err) => {
 			if (err) {
 				console.error('Error writing to the file:', err);
 				return;
@@ -69,7 +69,7 @@ const semicolonToComma = () => {
 
 
 const parseCsvToJson = () => {
-	fs.createReadStream(`./tmp_${csvFileName}`)
+	fs.createReadStream(`./csv/tmp_${csvFileName}`)
 		.pipe(parse({ delimiter: ",", from_line: 1 }))
 		.on("data", (row) => {
 			if (rowsIndex === 0) {
@@ -84,7 +84,7 @@ const parseCsvToJson = () => {
 			}
 		})
 		.on("end", () => {
-			fs.writeFile(`${selectedAnswer}.json`, JSON.stringify(jsonOutput), 'utf8', function (err) {
+			fs.writeFile(`./output/${selectedAnswer}.json`, JSON.stringify(jsonOutput), 'utf8', function (err) {
 				if (err) {
 					console.log("An error occured while writing JSON Object to File.");
 					return console.log(err);
@@ -101,7 +101,7 @@ const parseCsvToJson = () => {
 }
 
 const removeTmpFile = () => {
-	fs.unlink(`./tmp_${csvFileName}`, (err) => {
+	fs.unlink(`./csv/tmp_${csvFileName}`, (err) => {
 		if (err) {
 			console.error(err);
 		}
